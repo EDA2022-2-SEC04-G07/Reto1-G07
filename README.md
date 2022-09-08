@@ -38,9 +38,8 @@ This repository is part of the data structure and algorithms (#EDA) teaching fra
 
 The students edit this section to add their names, Uniandes emails, and specify which project functionality of the project they will implement.
 
-1. Hernando Andres Sanchez Martinez, ha.sanchezm1@uniandes.edu.co, Req. 1.
-1. Fabio Enrique Higuera Pacanchique, f.higuerap@uniandes.edu.co, 202215273, Req. 2.
-1. Luis Daniel Barbosa Tejada, ld.barbosa10, Req. 3.
+1. Fabio Enrique Higuera Pacanchique, f.higuerap@uniandes.edu.co, 202215273, Req. 
+1. Luis Daniel Barbosa Tejada, ld.barbosa10, Req.
 
 [Back to top](#challenge-template)
 
