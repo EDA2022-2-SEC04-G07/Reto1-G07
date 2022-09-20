@@ -25,6 +25,8 @@ import sys
 import controller
 from DISClib.ADT import list as lt
 assert cf
+from tabulate import tabulate
+from datetime import datetime
 
 default_limit = 1000
 sys.setrecursionlimit(default_limit*10)
@@ -35,100 +37,23 @@ Presenta el menu de opciones y por cada seleccion
 se hace la solicitud al controlador para ejecutar la
 operación solicitada
 """
-
-
 def newController():
-    """
-    Se crea una instancia del controlador
-    """
     control = controller.newController()
     return control
 
-
 def printMenu():
-    """
-    Menu de usuario
-    """
-    print("Bienvenido")
-    print("1- Cargar información en el catálogo")
-    print("2- Consultar los Top x libros por promedio")
-    print("3- Consultar los libros de un autor")
-    print("4- Libros por género")
+    print("Bienvenid@")
+    print("1- Elegir la el tipo de lista:'1' Arraylist, '2' Linkedlist")
+    print("2- Cargar informacion de las plataformas")
+    print("3- Listar las peliculas estrenadas en un periodo de tiempo")
+    print("4- Listar programas de television agregados en un periodo de tiempo")
+    print("5- Encontrar contenido donde participar un actor")
+    print("6- Encontrar contenido producido en un pais")
+    print("7- Encontrar contenido con un director involucrado")
+    print("8- Listar el TOP de los generos con mas contenido")
     print("0- Salir")
 
-
-def loadData(control):
-    """
-    Solicita al controlador que cargue los datos en el modelo
-    """
-    books, authors, tags, book_tags = controller.loadData(control)
-    return books, authors, tags, book_tags
-
-
-def printAuthorData(author):
-    """
-    Recorre la lista de libros de un autor, imprimiendo
-    la informacin solicitada.
-    """
-    if author:
-        print('Autor encontrado: ' + author['name'])
-        print('Promedio: ' + str(author['average_rating']))
-        print('Total de libros: ' + str(lt.size(author['books'])))
-        for book in lt.iterator(author['books']):
-            print('Titulo: ' + book['title'] + '  ISBN: ' + book['isbn'])
-    else:
-        print('No se encontro el autor')
-
-
-def printBestBooks(books):
-    """
-    Imprime los mejores libros solicitados
-    """
-    size = lt.size(books)
-    if size:
-        print(' Estos son los mejores libros: ')
-        for book in lt.iterator(books):
-            print('Titulo: ' + book['title'] + '  ISBN: ' +
-                  book['isbn'] + ' Rating: ' + book['average_rating'])
-    else:
-        print('No se encontraron libros')
-
-
-# Se crea el controlador asociado a la vista
-control = newController()
-
+catalog = None
 """
 Menu principal
 """
-while True:
-    printMenu()
-    inputs = input('Seleccione una opción para continuar\n')
-    if int(inputs[0]) == 1:
-        print("Cargando información de los archivos ....")
-        bk, at, tg, bktg = loadData(control)
-        print('Libros cargados: ' + str(bk))
-        print('Autores cargados: ' + str(at))
-        print('Géneros cargados: ' + str(tg))
-        print('Asociación de Géneros a Libros cargados: ' +
-              str(bktg))
-
-    elif int(inputs[0]) == 2:
-        number = input("Buscando los TOP ?: ")
-        books = controller.getBestBooks(control, int(number))
-        printBestBooks(books)
-
-    elif int(inputs[0]) == 3:
-        authorname = input("Nombre del autor a buscar: ")
-        author = controller.getBooksByAuthor(control, authorname)
-        printAuthorData(author)
-
-    elif int(inputs[0]) == 4:
-        label = input("Etiqueta a buscar: ")
-        book_count = controller.countBooksByTag(control, label)
-        print('Se encontraron: ', book_count, ' Libros')
-
-    elif int(inputs[0]) == 0:
-        sys.exit(0)
-
-    else:
-        continue
