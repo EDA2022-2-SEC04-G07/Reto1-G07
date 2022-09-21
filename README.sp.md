@@ -32,8 +32,8 @@ Este repositorio forma parte del marco docente de estructura de datos y algoritm
 
 Los estudiantes editan esta sección para agregar sus nombres, correos electrónicos de Uniandes y especificar qué funcionalidad de proyecto implementarán.
 
-1. Fabio Enrique Higuera Pacanchique, f.higuerap@uniandes.edu.co, 202215273, Req 3.
-1. Luis Daniel Barbosa Tejada, ld.barbosa10, Req 5.
+1. Fabio Enrique Higuera Pacanchique, f.higuerap, 202215273, Req 3.
+1. Luis Daniel Barbosa Tejada, ld.barbosa10, 201423122, Req 5.
 
 [Volver al inicio](#plantilla-del-reto)
 

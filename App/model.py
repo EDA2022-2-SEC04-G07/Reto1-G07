@@ -228,9 +228,10 @@ def getMoviesByPeriodo(movies, year1, year2):
     for i in range(lt.size(movies)):
         movie = lt.getElement(movies, i)
         if movie['type'] == 'Movie':
-            if int(year1) <= int(movie['release_year']) <= int(year2):
-                lt.addLast(moviesByPeriodo, movie)
-
+            if int(year1) < int(movie['release_year']):
+                if int(movie['release_year'])  < int(year2):
+                    lt.addLast(moviesByPeriodo, movie)
+    #ordenamiento
     movies_sort = ms.sort(movies, cmpMoviesByReleaseYear)
     end_time = getTime()
     delta_time = deltaTime(start, end_time)
