@@ -132,6 +132,8 @@ def getMoviesByDirector(movies, director):
 def getMoviesByPeriodo(movies, year1, year2):
     return model.getMoviesByPeriodo(movies, year1, year2)
 
+def getMoviesByCountry(movies, country):
+    return model.getMoviesbyCountry(movies, country)
 
 def top_generos(movies,top):
     return model.top_generos(movies,top)

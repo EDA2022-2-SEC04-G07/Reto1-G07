@@ -151,7 +151,23 @@ def getMoviesByActor(movies,actor):
     return moviesByActor, deltatime, mov , ser
 
 #Obtener peliculas por pais
-   
+def getMoviesbyCountry(movies,country):
+    start= getTime()
+    sort = ms.sort(movies, cmpMoviesByReleaseYear)
+    moviesByCountry = lt.newList()
+    mov=0
+    ser=0
+    for i in range(lt.size(sort)):
+        movie=lt.getElement(sort, i)
+        if country.lower() in movie["country"].lower():
+            lt.addLast(moviesByCountry,movie)
+            if movie['type'] == 'Movie':
+                mov += 1
+            else:
+                ser +=1
+    end_time=getTime()
+    deltatime=deltaTime(start, end_time)
+    return moviesByCountry, deltatime, mov, ser
 #Obtener contenido por director especifico
 def getContentByDirector(movies,director):
     start = getTime()

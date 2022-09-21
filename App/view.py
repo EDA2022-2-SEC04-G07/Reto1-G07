@@ -146,6 +146,51 @@ def printTitlesByAutor(moviesByAutor, cont_movies, cont_tvshows):
         print("El actor no se encuentra en ningun contenido")
 
 
+def printTitlesByCountry(moviesByCountry, cont_movies, cont_tvshows):
+    table=[]
+    if lt.size(moviesByCountry) > 2:
+        lista = []
+        for i in range(1,4):
+            movie = lt.getElement(moviesByCountry, i)
+            
+            cast = movie['cast']
+            description = movie['description']
+            nueva_descripcion = ''
+            if len(description) > 50:
+                nueva_descripcion = description[:50] + '...'
+                description = nueva_descripcion
+            if len(cast) > 80:
+                cast = cast[:80] + '...'
+            lista.append([movie['release_year'],movie['title'], movie['director'],
+                         movie['streaming'], movie['duration'],movie["type"],cast, movie['country'], movie['listed_in'], description])
+        
+        for k in range(lt.size(moviesByCountry), lt.size(moviesByCountry) - 3, -1):
+            movie = lt.getElement(moviesByCountry, k)
+            
+            description = movie['description']
+            nueva_descripcion = ''
+            if len(description) > 50:
+                nueva_descripcion = description[:50] + '...'
+                description = nueva_descripcion
+            if len(cast) > 80:
+                cast = cast[:80] + '...'
+            lista.append([movie['release_year'],movie['title'], movie['director'],
+                         movie['streaming'], movie['duration'],movie["type"],cast, movie['country'], movie['listed_in'], description])
+
+        table.append(lista)
+        tipos = [['Movies',str(cont_movies)], ['Series',str(cont_tvshows)]]
+        print(tabulate(tipos, headers=['type', 'count'], tablefmt='grid', stralign='left'))
+        columna = []
+        for i in range(len(table)):
+            for k in range(len(table[i])):
+                columna.append(table[i][k])
+        print(tabulate(columna, headers=['release_year ','title','director','stream_service', 'duration','type', 'cast', 'country','listed_in', 'description'],
+        tablefmt="grid", stralign='left', maxcolwidths=18, ))
+        print("\n")
+    else:
+        print("No se encontró contenido producido en este pais.")
+
+
 def printMoviesByPeriodo(moviesByPeriodo, periodo):
     if lt.size(moviesByPeriodo) > 0:
 
@@ -405,7 +450,13 @@ while True:
         printTitlesByAutor(movies, cont_movies, cont_tvshows)
         print('\n')
 
-
+    elif int(inputs) == 5:
+        pais = input("Ingrese el pais: ")
+        movies, tiempo, cont_movies, cont_tvshows = controller.getMoviesByCountry(titles,pais)
+        print('TEL tiempo en ms es: ', f"{tiempo:0.3f}")
+        print('Movies por pais: '+pais)
+        printTitlesByCountry(movies, cont_movies,cont_tvshows)
+        print('\n')
 
     elif int(inputs) == 6:
         director = input("Ingrese el nombre del director: ")
