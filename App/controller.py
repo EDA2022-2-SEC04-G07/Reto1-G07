@@ -55,9 +55,10 @@ def loadData(control):
     disney = load_disney(catalog)
     netflix = load_netflix(catalog)
     hulu = load_hulu(catalog)
+    titles = getAllTit(control)
     
     
-    return amazon,disney, netflix, hulu
+    return amazon,disney, netflix, hulu, titles
 
 # Carga individual por plataforma
 
@@ -72,7 +73,7 @@ def load_netflix(catalog, ):
         model.addinfo_netflix(catalog, inf)
         model.addMediaTitles(catalog, inf, 'netflix')
         
-    return model.netflixSize(catalog)
+    return model.netSize(catalog)
 
 def load_amazon(catalog):
     """
@@ -85,7 +86,7 @@ def load_amazon(catalog):
        model.addinfo_amazon(catalog, inf)
        model.addMediaTitles(catalog, inf, 'amazon')
        
-    return model.amazonSize(catalog)
+    return model.amaSize(catalog)
 
 def load_disney(catalog):
     """
@@ -98,7 +99,7 @@ def load_disney(catalog):
         model.addinfo_disney(catalog, inf)
         model.addMediaTitles(catalog, inf, 'disney')
         
-    return model.disneySize(catalog)
+    return model.disSize(catalog)
 
 def load_hulu(catalog):
     """
@@ -112,14 +113,35 @@ def load_hulu(catalog):
         model.addinfo_hulu(catalog, inf)
         model.addMediaTitles(catalog, inf, 'hulu')
     
-    return model.huluSize(catalog)
+    return model.hulSize(catalog)
 
-def moviesSize(catalog):
-    return model.moviesSize(catalog)
+# Requerimientos
+
+def movSize(catalog):
+    return model.movSize(catalog)
 
 def changeListType(catalog, type):
     model.changeListType(catalog, type)
 
+def getMoviesByActor(movies, actor):
+    return model.getMoviesByActor(movies, actor)
+
+def getMoviesByDirector(movies, director):
+    return model.getContentByDirector(movies, director)
+    
+def getMoviesByPeriodo(movies, year1, year2):
+    return model.getMoviesByPeriodo(movies, year1, year2)
+
+
+def top_generos(movies,top):
+    return model.top_generos(movies,top)
+
 # Funciones de ordenamiento
 
-# Funciones de consulta sobre el catálogo
+def getSomeTitles(control):
+    movies = model.getTitulos(control['model'])
+    return movies
+
+def getAllTit(control):
+    allTitles = model.getAllTit(control['model'])
+    return allTitles
